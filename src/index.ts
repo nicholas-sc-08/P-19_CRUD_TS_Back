@@ -1,8 +1,8 @@
-import express from 'express';
-import { PrismaClient } from '@prisma/client';
+import * as dotenv from "dotenv";
+import { HTTPAdapter } from "./adapters/http/protocol.js";
+import { Server } from "http";
 
-const app = express();
-const prisma = new PrismaClient();
+dotenv.config();
 
-app.use(express.json());
-app.listen(3000, () => console.log(`server running at 3000`));
+const server = new Server(HTTPAdapter);
+server.start();
